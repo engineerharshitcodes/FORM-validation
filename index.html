@@ -1,0 +1,120 @@
+<html>
+    <head>
+<title>form validation project</title>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 130%;
+    }
+    .Wrapper{
+        width: 550px;
+        margin: 0 auto;
+    }
+    label{
+        width: 200px;
+        float: left;
+        position: relative;
+        top: 12px;
+    
+    }
+    input{
+        width: 320px;
+        font-size: 25px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px 5px 12px 5px;
+    }
+    .Wrapper2{
+        margin-bottom: 12px;
+    }
+    .Wrapper3{
+        margin-bottom: 12px;
+    }
+    .Wrapper4{
+        margin-bottom: 12px;
+    }
+#SUbmit{
+    width: 120px;
+    margin-left: 200px;
+    margin-top: 12px;
+}
+#errors{
+    color: black;
+    font-size: 120%;
+}
+#success{
+    color: aqua;
+    font-size: 126%;
+}
+</style>
+<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+    </head>
+    <body>
+        <div id="success"></div>
+        <div id="errors"></div>
+
+        
+        <div class="Wrapper"></div>
+        <label for="Email">Email-ID</label>
+        <input type="text" id="Email" name="Email">
+
+
+        <div class="Wrapper2"></div>
+        <label for="Mobile">Mobile No</label>
+        <input type="text" id="Mobile" name="Mobile">
+
+        <div class="Wrapper3"></div>
+        <label for="PASS">Password</label>
+        <input type="text" id="PASS" name="PASS">
+
+        <div class="Wrapper4"></div>
+        <label for="CPASS">Confirm Password</label>
+        <input type="text" id="CPASS" name="CPASS">
+        
+        <input id="submit"type="SUBMIT">
+
+        <script>
+            var errormessage="";
+            var missingarea="";
+
+            function is_email(email){      
+            var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regex.test(email); 
+        } 
+            $("#submit").click(function(){
+                if($("#Email").val()==""){
+                    missingfield+="<p>Email not filled</p>";
+                }
+                if($("#Mobile").val()==""){
+                    missingfield+="<p>Mobile no not filled</p>";
+                }
+                if($("#CPASS").val()==""){
+                    missingfield+="<p>password not filled</p>";
+                }
+                if(is_email($("#Email").val())==false){
+                    errormessage+="<p>Email id not valid</p>";
+                }
+            
+                if($.isNumeric($("#Mobile").val())==false){
+                    errormessage+="<p>Mobile no not valid</P>";
+                }
+                if($("#PASS").val()!=$("#CPASS").val()){
+                errormessage+="<p>password not matching</P>";
+            }
+            if(errormessage==""){
+                $("#errors").html("you are registered");
+            }
+            else{
+                $("#errors").html("errormessage+missingfield");
+            }
+            });
+
+            
+
+            
+            
+            
+        </script>
+
+    </body>
+</html>
